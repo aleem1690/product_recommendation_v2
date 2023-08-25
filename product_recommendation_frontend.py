@@ -46,11 +46,29 @@ def main():
           st.warning("Oops! Please share your product needs, either through text or voice recording.")
         
         result = request_summary(user_input_text)
-        st.write("Results")
-        st.write(result['product_name'])
-        st.write(result['requirement_list'])
+        # result_name = result['product_name']
+        # result_requirements = result['requirement_list'][0]
 
-        #if user_input:
+        # Display the product name and requirements from ML model
+        st.success("Product Information from ML Model:")
+        
+        # Extract product name and requirements
+        edited_product_name = st.text_input("Confirm product:", result['product_name'])
+
+        # Allow user to manipulate requirement list
+        st.write("Product Requirements:")
+        edited_requirements = []
+        for idx, req in enumerate(result['requirement_list']):
+            edited_req = st.text_input(f"Requirement {idx + 1}:", req)
+            edited_requirements.append(edited_req)
+
+        # Rearrange, add, or delete values in requirements list
+        rearranged_requirements = st.text_area("Rearrange, add, or delete values:", "\n".join(edited_requirements))
+        
+        # result_name = result['product_name']
+        # result_requirements = result['requirement_list'][0]
+        # #product_name = lines[0]
+        # product_requirements = [line.strip() for line in lines[1:] if line.strip()]
 
 
 def request_summary(user_input):
