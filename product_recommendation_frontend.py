@@ -56,13 +56,12 @@ def main():
         edited_product_name = st.text_input("Confirm product:", result['product_name'])
 
         st.write("Product Requirements:")
-        for idx, req in enumerate(result['requirement_list']):
-            st.write(f"Requirement {idx + 1}:")
-            with st.beta_expander("Edit/Delete"):
-                edited_req = st.text_input("", value=req)
+        for idx, req in enumerate(ml_output['requirement_list']):
+            with st.beta_expander(f"Requirement {idx + 1}"):
+                edited_req = st.text_input("Edit requirement:", req)
                 delete_button = st.button("Delete")
-            if delete_button:
-                ml_output['requirement_list'].remove(req)
+                if delete_button:
+                    ml_output['requirement_list'].remove(req)
 
         # Allow user to manipulate requirement list
         # st.write("Product Requirements:")
