@@ -32,7 +32,7 @@ def main():
 
     # req_df = st.experimental_data_editor(data["requirement_list"],num_rows="dynamic")
 
-    slist = DraggableList(data["requirement_list"], key="foo")
+    slist = DraggableList("requirement_list":data["requirement_list"], key="foo")
     st.write(slist)
     
 
