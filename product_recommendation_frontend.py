@@ -7,6 +7,8 @@ import json
 import os
 import whisper
 import pandas as pd
+from st_draggable_list import DraggableList
+
 
 
 
@@ -28,12 +30,10 @@ def main():
     data_di = {"product_name":"mobile_phone","requirement_list":["1.under Rs 35000", "2. calls", "3. texts"]}
     data = pd.DataFrame(data_di)
 
-    req_df = st.experimental_data_editor(data["requirement_list"],num_rows="dynamic")
+    # req_df = st.experimental_data_editor(data["requirement_list"],num_rows="dynamic")
 
-    # Display buttons for reordering
-    for i in range(len(data)):
-        st.button(f"Move Up {i}", on_click=lambda i=i: move_up(i))
-        st.button(f"Move Down {i}", on_click=lambda i=i: move_down(i))
+    slist = DraggableList(data["requirement_list"], key="foo")
+    st.write(slist)
     
 
     if input_type == "Text":
