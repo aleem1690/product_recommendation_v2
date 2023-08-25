@@ -29,6 +29,7 @@ def main():
 
     data_di = {"product_name":"mobile_phone","requirement_list":["1.under Rs 35000", "2. calls", "3. texts"]}
     data = pd.DataFrame(data_di)
+    data["Rank"] = ""
 
     st.write("Confirm product")
     data_prod_name = data["product_name"].drop_duplicates()
