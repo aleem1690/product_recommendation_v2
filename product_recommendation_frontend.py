@@ -23,6 +23,8 @@ def main():
 
     #setting whisper model
     model = whisper.load_model("base")
+
+    req_df = st.experimental_data_editor('mobile phone')
     
 
     if input_type == "Text":
