@@ -55,15 +55,24 @@ def main():
         # Extract product name and requirements
         edited_product_name = st.text_input("Confirm product:", result['product_name'])
 
-        # Allow user to manipulate requirement list
         st.write("Product Requirements:")
-        edited_requirements = []
         for idx, req in enumerate(result['requirement_list']):
-            edited_req = st.text_input(f"Requirement {idx + 1}:", req)
-            edited_requirements.append(edited_req)
+            st.write(f"Requirement {idx + 1}:")
+            with st.beta_expander("Edit/Delete"):
+                edited_req = st.text_input("", value=req)
+                delete_button = st.button("Delete")
+            if delete_button:
+                ml_output['requirement_list'].remove(req)
 
-        # Rearrange, add, or delete values in requirements list
-        rearranged_requirements = st.text_area("Rearrange, add, or delete values:", "\n".join(edited_requirements))
+        # Allow user to manipulate requirement list
+        # st.write("Product Requirements:")
+        # edited_requirements = []
+        # for idx, req in enumerate(result['requirement_list']):
+        #     edited_req = st.text_input(f"Requirement {idx + 1}:", req)
+        #     edited_requirements.append(edited_req)
+
+        # # Rearrange, add, or delete values in requirements list
+        # rearranged_requirements = st.text_area("Rearrange, add, or delete values:", "\n".join(edited_requirements))
         
         # result_name = result['product_name']
         # result_requirements = result['requirement_list'][0]
