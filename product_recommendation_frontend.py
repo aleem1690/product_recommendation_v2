@@ -27,7 +27,7 @@ def main():
 
     if input_type == "Text":
         # Text box for sharing product needs
-        user_input_text = st.text_area("What do you want to buy today? (text):", "")
+        user_input_text = st.text_area("What do you want to buy today?:", "")
     else:
         # Voice recording option
         st.write("We would love to hear from you!")
@@ -55,7 +55,7 @@ def main():
 
 def request_summary(user_input):
     f = modal.Function.lookup("corise-prod_recommendation-project", "summary_breakdown")
-    output = f.call(search_request)
+    output = f.call(user_input)
     return output
 
 if __name__ == '__main__':
