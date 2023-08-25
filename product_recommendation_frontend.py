@@ -53,15 +53,17 @@ def main():
         st.success("Product Information from ML Model:")
         
         # Extract product name and requirements
-        edited_product_name = st.text_input("Confirm product:", result['product_name'])
+        # edited_product_name = st.text_input("Confirm product:", result['product_name'])
+        req_df = st.experimental_data_editor(result['product_name'])
 
         st.write("Product Requirements:")
-        for idx, req in enumerate(result['requirement_list']):
-            with st.beta_expander(f"Requirement {idx + 1}"):
-                edited_req = st.text_input("Edit requirement:", req)
-                delete_button = st.button("Delete")
-                if delete_button:
-                    ml_output['requirement_list'].remove(req)
+        # req_df = st.experimental_data_editor(result['requirement_list'])
+        # for idx, req in enumerate(result['requirement_list']):
+        #     with st.beta_expander(f"Requirement {idx + 1}"):
+        #         edited_req = st.text_input("Edit requirement:", req)
+        #         delete_button = st.button("Delete")
+        #         if delete_button:
+        #             ml_output['requirement_list'].remove(req)
 
         # Allow user to manipulate requirement list
         # st.write("Product Requirements:")
