@@ -27,17 +27,17 @@ def main():
     #setting whisper model
     model = whisper.load_model("base")
 
-    data_di = {"product_name":"mobile_phone","requirement_list":["1.under Rs 35000", "2. calls", "3. texts"]}
-    data = pd.DataFrame(data_di)
-    data["Rank"] = ""
+    # data_di = {"product_name":"mobile phone","requirement_list":["1.under Rs 35000", "2. calls", "3. texts"]}
+    # data = pd.DataFrame(data_di)
+    # data["Rank"] = ""
 
-    st.write("Confirm product")
-    data_prod_name = data["product_name"].drop_duplicates()
-    name_df = st.experimental_data_editor(data_prod_name,num_rows="dynamic")
+    # st.write("Confirm product")
+    # data_prod_name = data["product_name"].drop_duplicates()
+    # name_df = st.experimental_data_editor(data_prod_name,num_rows="dynamic")
 
-    st.write("Confirm requirements")
-    data_req_name = data.drop("product_name",axis=1)
-    req_df = st.experimental_data_editor(data_req_name,num_rows="dynamic")
+    # st.write("Confirm requirements")
+    # data_req_name = data.drop("product_name",axis=1)
+    # req_df = st.experimental_data_editor(data_req_name,num_rows="dynamic")
 
     # # ranks = ["" for _ in data_di["requirement_list"]]
 
@@ -96,9 +96,17 @@ def main():
         
         # Extract product name and requirements
         # edited_product_name = st.text_input("Confirm product:", result['product_name'])
-        req_df = st.experimental_data_editor(result['product_name'])
+        result_df = pd.DataFrame(result)
+        data_prod_name = result_df["product_name"].drop_duplicates()
+        data_prod_name = data_prod_name.rename(columns={"product_name":"product identified"}
+        name_df = st.experimental_data_editor(data_prod_name,num_rows="dynamic")
+
 
         st.write("Product Requirements:")
+        data_req_name = result_df.drop("product_name",axis=1)
+        data_req_name["Rank"] = ""
+        req_df = st.experimental_data_editor(data_req_name,num_rows="dynamic")
+
         # req_df = st.experimental_data_editor(result['requirement_list'])
         # for idx, req in enumerate(result['requirement_list']):
         #     with st.beta_expander(f"Requirement {idx + 1}"):
