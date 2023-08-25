@@ -34,16 +34,16 @@ def main():
     st.write("Confirm product")
     data_prod_name = data["product_name"].drop_duplicates()
     name_df = st.experimental_data_editor(data_prod_name,num_rows="dynamic",key="editable_df")
-    if st.button("Save Changes"):
-        st.table(name_df)
-    st.write(name_df)
+    # if st.button("Save Changes"):
+    #     st.table(name_df)
+    # st.write(name_df)
 
     st.write("Confirm requirements")
     data_req_name = data.drop("product_name",axis=1)
     req_df = st.experimental_data_editor(data_req_name,num_rows="dynamic")
     if st.button("Save Changes"):
         st.table(req_df)
-    st.write(req_df)
+    # st.write(req_df)
 
     # # ranks = ["" for _ in data_di["requirement_list"]]
 
