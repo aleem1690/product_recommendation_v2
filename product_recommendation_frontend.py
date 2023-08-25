@@ -98,7 +98,7 @@ def main():
         # edited_product_name = st.text_input("Confirm product:", result['product_name'])
         result_df = pd.DataFrame(result)
         data_prod_name = result_df["product_name"].drop_duplicates()
-        data_prod_name = data_prod_name.rename(columns={"product_name":"product identified"})
+        # data_prod_name = data_prod_name.rename(columns={"product_name":"product identified"})
         name_df = st.experimental_data_editor(data_prod_name,num_rows="dynamic")
 
 
