@@ -28,7 +28,7 @@ def main():
     data_di = {"product_name":"mobile_phone","requirement_list":["1.under Rs 35000", "2. calls", "3. texts"]}
     data = pd.DataFrame(data_di)
 
-    req_df = st.experimental_data_editor(data["product_name"])
+    req_df = st.experimental_data_editor(data["requirement_list"],num_rows=”dynamic”)
     
 
     if input_type == "Text":
