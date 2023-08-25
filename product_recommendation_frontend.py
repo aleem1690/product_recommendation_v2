@@ -29,6 +29,11 @@ def main():
     data = pd.DataFrame(data_di)
 
     req_df = st.experimental_data_editor(data["requirement_list"],num_rows="dynamic")
+
+    # Display buttons for reordering
+    for i in range(len(data)):
+        st.button(f"Move Up {i}", on_click=lambda i=i: move_up(i))
+        st.button(f"Move Down {i}", on_click=lambda i=i: move_down(i))
     
 
     if input_type == "Text":
