@@ -27,17 +27,23 @@ def main():
     #setting whisper model
     model = whisper.load_model("base")
 
-    # data_di = {"product_name":"mobile phone","requirement_list":["1.under Rs 35000", "2. calls", "3. texts"]}
-    # data = pd.DataFrame(data_di)
-    # data["Rank"] = ""
+    data_di = {"product_name":"mobile phone","requirement_list":["1.under Rs 35000", "2. calls", "3. texts"]}
+    data = pd.DataFrame(data_di)
+    data["Rank"] = ""
 
-    # st.write("Confirm product")
-    # data_prod_name = data["product_name"].drop_duplicates()
-    # name_df = st.experimental_data_editor(data_prod_name,num_rows="dynamic")
+    st.write("Confirm product")
+    data_prod_name = data["product_name"].drop_duplicates()
+    name_df = st.experimental_data_editor(data_prod_name,num_rows="dynamic",key="editable_df")
+    if st.button("Save Changes"):
+        st.table(name_df)
+    st.write(name_df)
 
-    # st.write("Confirm requirements")
-    # data_req_name = data.drop("product_name",axis=1)
-    # req_df = st.experimental_data_editor(data_req_name,num_rows="dynamic")
+    st.write("Confirm requirements")
+    data_req_name = data.drop("product_name",axis=1)
+    req_df = st.experimental_data_editor(data_req_name,num_rows="dynamic")
+    if st.button("Save Changes"):
+        st.table(req_df)
+    st.write(req_df)
 
     # # ranks = ["" for _ in data_di["requirement_list"]]
 
