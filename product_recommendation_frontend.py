@@ -30,17 +30,32 @@ def main():
     data_di = [{"product_name":"mobile_phone","requirement_list":["1.under Rs 35000", "2. calls", "3. texts"]}]
     data = pd.DataFrame(data_di)
 
+    ranks = ["" for _ in data_di["requirement_list"]]
+
+    st.header("Requirements")
+
+    # Create a table with editable Rank column
+    table_data = list(zip(ranks, requirement_list))
+    edited_data = []
+    for rank, requirement in table_data:
+        edited_rank = st.number_input(label="Rank", value=rank, key=requirement)
+        edited_data.append((edited_rank, requirement))
+
+    st.header("Edited Requirements")
+    for rank, requirement in edited_data:
+        st.write(f"{rank}. {requirement}")
+
     # req_df = st.experimental_data_editor(data["requirement_list"],num_rows="dynamic")
 
-    data2 = [
-    {"id": "oct", "order": 10, "name": "Oct"},
-    {"id": "nov", "order": 11, "name": "Nov"},
-    {"id": "dec", "order": 12, "name": "Dec"},
-    {"id": "jan", "order": 1, "name": "Jan"},
-    {"id": "feb", "order": 2, "name": "Feb"}]
+    # data2 = [
+    # {"id": "oct", "order": 10, "name": "Oct"},
+    # {"id": "nov", "order": 11, "name": "Nov"},
+    # {"id": "dec", "order": 12, "name": "Dec"},
+    # {"id": "jan", "order": 1, "name": "Jan"},
+    # {"id": "feb", "order": 2, "name": "Feb"}]
 
-    slist = DraggableList(data2, key="foo")
-    st.write(slist)
+    # slist = DraggableList(data2, key="foo")
+    # st.write(slist)
     
 
     if input_type == "Text":
