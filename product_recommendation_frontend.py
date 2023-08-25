@@ -32,7 +32,14 @@ def main():
 
     # req_df = st.experimental_data_editor(data["requirement_list"],num_rows="dynamic")
 
-    slist = DraggableList(data_di, key="foo")
+    data2 = [
+    {"id": "oct", "order": 10, "name": "Oct"},
+    {"id": "nov", "order": 11, "name": "Nov"},
+    {"id": "dec", "order": 12, "name": "Dec"},
+    {"id": "jan", "order": 1, "name": "Jan"},
+    {"id": "feb", "order": 2, "name": "Feb"}]
+
+    slist = DraggableList(data2, key="foo")
     st.write(slist)
     
 
