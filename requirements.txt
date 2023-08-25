@@ -1,5 +1,7 @@
+streamlit
 openai
 modal
 modal-client
 bs4
 openai-whisper
+audio_recorder_streamlit
