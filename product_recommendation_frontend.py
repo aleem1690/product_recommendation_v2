@@ -6,6 +6,7 @@ import modal
 import json
 import os
 import whisper
+import pandas as pd
 
 
 
@@ -24,7 +25,10 @@ def main():
     #setting whisper model
     model = whisper.load_model("base")
 
-    req_df = st.experimental_data_editor('mobile phone')
+    data_di = {"product_name":"mobile_phone","requirement_list":'1.under Rs 35000', '2. calls', '3. texts'}
+    data = pd.DataFrame(data_di)
+
+    req_df = st.experimental_data_editor(data)
     
 
     if input_type == "Text":
