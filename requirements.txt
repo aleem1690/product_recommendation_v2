@@ -5,4 +5,4 @@ modal-client
 bs4
 openai-whisper
 audio_recorder_streamlit
-st_draggable_list
+streamlit-draggable-list
