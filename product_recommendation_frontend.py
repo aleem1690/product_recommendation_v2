@@ -97,25 +97,32 @@ def main():
         # result_name = result['product_name']
         # result_requirements = result['requirement_list'][0]
 
-    # Display the product name and requirements from ML model
-    st.success("Product Information from ML Model:")
+        if 'result' not in st.session_state:
+            st.session_state.result = result        
+
+        # Display the product name and requirements from ML model
+        st.success("Product Information from ML Model:")
+        
+        # Extract product name and requirements
+        # edited_product_name = st.text_input("Confirm product:", result['product_name'])
+        result_df = pd.DataFrame(result)
+        data_prod_name = result_df["product_name"].drop_duplicates()
+        # data_prod_name = data_prod_name.rename(columns={"product_name":"product identified"})
+        name_df = st.experimental_data_editor(data_prod_name,num_rows="dynamic")
+        # if st.button("Save Changes"):
+        #     st.table(name_df)
     
-    # Extract product name and requirements
-    # edited_product_name = st.text_input("Confirm product:", result['product_name'])
-    result_df = pd.DataFrame(result)
-    data_prod_name = result_df["product_name"].drop_duplicates()
-    # data_prod_name = data_prod_name.rename(columns={"product_name":"product identified"})
-    name_df = st.experimental_data_editor(data_prod_name,num_rows="dynamic")
-    if st.button("Save Changes"):
-        st.table(name_df)
+    
+        st.write("Product Requirements:")
+        data_req_name = result_df.drop("product_name",axis=1)
+        data_req_name["Rank"] = ""
+        req_df = st.experimental_data_editor(data_req_name,num_rows="dynamic")
+        if st.button("Save Changes"):
+            st.session_state.ml_output.product_name = name_df['product_name']
+            st.session_state.ml_output.product_name = req_df['requirement_list'].to_list()
 
 
-    st.write("Product Requirements:")
-    data_req_name = result_df.drop("product_name",axis=1)
-    data_req_name["Rank"] = ""
-    req_df = st.experimental_data_editor(data_req_name,num_rows="dynamic")
-    if st.button("Save Changes"):
-        st.table(req_df)
+            st.table(req_df)
 
         # req_df = st.experimental_data_editor(result['requirement_list'])
         # for idx, req in enumerate(result['requirement_list']):
