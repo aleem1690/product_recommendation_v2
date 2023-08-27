@@ -43,7 +43,7 @@ def main():
     req_df = st.experimental_data_editor(data_req_name,num_rows="dynamic")
     if st.button("Save Changes"):
         st.table(req_df)
-    st.write(req_df)
+    # st.write(req_df)
 
     # # ranks = ["" for _ in data_di["requirement_list"]]
 
