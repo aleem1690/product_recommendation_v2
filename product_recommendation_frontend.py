@@ -108,7 +108,7 @@ def main():
         result_df = pd.DataFrame(result)
         data_prod_name = result_df["product_name"].drop_duplicates()
         # data_prod_name = data_prod_name.rename(columns={"product_name":"product identified"})
-        name_df = st.experimental_data_editor(data_prod_name,num_rows="dynamic")
+        name_df = st.experimental_data_editor(st.session_state.result['product_name'],num_rows="dynamic")
         # if st.button("Save Changes"):
         #     st.table(name_df)
     
@@ -116,10 +116,11 @@ def main():
         st.write("Product Requirements:")
         data_req_name = result_df.drop("product_name",axis=1)
         data_req_name["Rank"] = ""
-        req_df = st.experimental_data_editor(data_req_name,num_rows="dynamic")
+        req_df = st.experimental_data_editor(st.session_state.result['requirement_list'],num_rows="dynamic")
         if st.button("Save Changes"):
-            st.session_state.ml_output.product_name = req_df['requirement_list'].to_list()
-            st.session_state.ml_output.product_name = name_df['product_name']
+            st.session_state.result["product_name"] = product_name
+            st.session_state.result["requirements_list"] = requirements_list
+            st.success("Changes saved!")
             
 
             st.table(name_df,req_df)
