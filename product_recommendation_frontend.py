@@ -115,7 +115,7 @@ def main():
         result_df = pd.DataFrame(result)
         data_prod_name = result_df["product_name"].drop_duplicates()
         # data_prod_name = data_prod_name.rename(columns={"product_name":"product identified"})
-        name_df = st.experimental_data_editor(st.session_state.result['product_name'],num_rows="dynamic")
+        name_df = st.experimental_data_editor(data_prod_name,num_rows="dynamic")
         # name_df = st.experimental_data_editor([{'product_name': name} for name in st.session_state.result['product_name']], num_rows="dynamic")
         # if st.button("Save Changes"):
         #     st.table(name_df)
