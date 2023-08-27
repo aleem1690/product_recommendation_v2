@@ -106,12 +106,16 @@ def main():
         data_prod_name = result_df["product_name"].drop_duplicates()
         # data_prod_name = data_prod_name.rename(columns={"product_name":"product identified"})
         name_df = st.experimental_data_editor(data_prod_name,num_rows="dynamic")
+        if st.button("Save Changes"):
+            st.table(name_df)
 
 
         st.write("Product Requirements:")
         data_req_name = result_df.drop("product_name",axis=1)
         data_req_name["Rank"] = ""
         req_df = st.experimental_data_editor(data_req_name,num_rows="dynamic")
+        if st.button("Save Changes"):
+            st.table(req_df)
 
         # req_df = st.experimental_data_editor(result['requirement_list'])
         # for idx, req in enumerate(result['requirement_list']):
