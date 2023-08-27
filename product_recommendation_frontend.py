@@ -81,7 +81,7 @@ def main():
         st.write("We would love to hear from you!")
         audio_bytes = audio_recorder()
         product_needs_voice = st.audio(audio_bytes, format="audio/wav")
-        user_input_text = model.transcribe("product_needs_voice")
+        user_input_text = model.transcribe(product_needs_voice)
 
     if st.button("Submit"):
         if input_type == "Text" and user_input_text.strip() != "":
