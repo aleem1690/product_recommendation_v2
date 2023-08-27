@@ -118,11 +118,11 @@ def main():
         data_req_name["Rank"] = ""
         req_df = st.experimental_data_editor(data_req_name,num_rows="dynamic")
         if st.button("Save Changes"):
-            st.session_state.ml_output.product_name = name_df['product_name']
             st.session_state.ml_output.product_name = req_df['requirement_list'].to_list()
+            st.session_state.ml_output.product_name = name_df['product_name']
+            
 
-
-            st.table(req_df)
+            st.table(name_df,req_df)
 
         # req_df = st.experimental_data_editor(result['requirement_list'])
         # for idx, req in enumerate(result['requirement_list']):
