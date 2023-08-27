@@ -104,8 +104,8 @@ def main():
             # otherwise set it to false
             st.session_state.result = False
 
-        if 'result' not in st.session_state:
-            st.session_state.result = result        
+        # if 'result' not in st.session_state:
+        #     st.session_state.result = result        
 
         # Display the product name and requirements from ML model
         st.success("Product Information from ML Model:")
