@@ -97,6 +97,13 @@ def main():
         # result_name = result['product_name']
         # result_requirements = result['requirement_list'][0]
 
+        try:
+            # check if the key exists in session state
+            _ = st.session_state.result
+        except AttributeError:
+            # otherwise set it to false
+            st.session_state.result = False
+
         if 'result' not in st.session_state:
             st.session_state.result = result        
 
@@ -108,8 +115,8 @@ def main():
         result_df = pd.DataFrame(result)
         data_prod_name = result_df["product_name"].drop_duplicates()
         # data_prod_name = data_prod_name.rename(columns={"product_name":"product identified"})
-        # name_df = st.experimental_data_editor(st.session_state.result['product_name'],num_rows="dynamic")
-        name_df = st.experimental_data_editor([{'product_name': name} for name in st.session_state.result['product_name']], num_rows="dynamic")
+        name_df = st.experimental_data_editor(st.session_state.result['product_name'],num_rows="dynamic")
+        # name_df = st.experimental_data_editor([{'product_name': name} for name in st.session_state.result['product_name']], num_rows="dynamic")
         # if st.button("Save Changes"):
         #     st.table(name_df)
     
@@ -121,6 +128,7 @@ def main():
         if st.button("Save Changes"):
             st.session_state.result["product_name"] = product_name
             st.session_state.result["requirements_list"] = requirements_list
+            st.session_state.result = True
             st.success("Changes saved!")
             
 
