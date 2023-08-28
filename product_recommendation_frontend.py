@@ -42,6 +42,8 @@ def main():
             # To save audio to a file:
             wav_file = open("audio_bytes.mp3", "wb")
             wav_file.write(audio_bytes.tobytes())
+
+            audio_tbt = whisper.load_audio(wav_file)
         
         # typ = type(audio_bytes)
         # st.write(typ)
