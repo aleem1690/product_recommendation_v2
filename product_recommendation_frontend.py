@@ -33,10 +33,10 @@ def main():
         # Voice recording option
         st.write("We would love to hear from you!")
         audio_bytes = audio_recorder()
-        product_needs_voice = st.audio(audio_bytes, format="audio/wav")
-        audio_tbt = model.load_audio(product_needs_voice)
-        if len(audio_tbt)>0:
-            st.write("done")
+        # product_needs_voice = st.audio(audio_bytes, format="audio/wav")
+        # audio_tbt = model.load_audio(product_needs_voice)
+        # if len(audio_tbt)>0:
+        #     st.write("done")
         # if product_needs_voice!=None:
         #     st.write(type(products_needs_voice))
         # user_input_text = model.transcribe(audio_bytes)
