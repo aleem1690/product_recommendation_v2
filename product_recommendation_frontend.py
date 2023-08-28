@@ -43,7 +43,7 @@ def main():
             wav_file = open("audio_bytes.mp3", "wb")
             wav_file.write(audio_bytes.tobytes())
 
-            st.write(wav_file)
+            st.write(wav_file.name)
 
             # audio_tbt = whisper.load_audio(audio_bytes)
         
