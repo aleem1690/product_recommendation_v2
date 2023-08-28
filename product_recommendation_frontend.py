@@ -9,9 +9,6 @@ import whisper
 import pandas as pd
 # from st_draggable_list import DraggableList
 
-
-
-
 def main():
     # Enthusiastic welcome message
     st.title("Welcome to the Product Needs Portal!")
@@ -26,53 +23,7 @@ def main():
 
     #setting whisper model
     model = whisper.load_model("base")
-
-    data_di = {"product_name":"mobile phone","requirement_list":["1.under Rs 35000", "2. calls", "3. texts"]}
-    data = pd.DataFrame(data_di)
-    data["Rank"] = ""
-
-    st.write("Confirm product")
-    data_prod_name = data["product_name"].drop_duplicates()
-    name_df = st.experimental_data_editor(data_prod_name,num_rows="dynamic",key="editable_df")
-    # if st.button("Save Changes"):
-    #     st.table(name_df)
-    # st.write(name_df)
-
-    st.write("Confirm requirements")
-    data_req_name = data.drop("product_name",axis=1)
-    req_df = st.experimental_data_editor(data_req_name,num_rows="dynamic")
-    # if st.button("Save Changes"):
-    #     st.table(req_df)
-    # st.write(req_df)
-
-    # # ranks = ["" for _ in data_di["requirement_list"]]
-
-    # st.header("Requirements")
-
-    # # Create a table with editable Rank column
-    # table_data = list(zip(ranks, requirement_list))
-    # edited_data = []
-    # for rank, requirement in table_data:
-    #     edited_rank = st.number_input(label="Rank", value=rank, key=requirement)
-    #     edited_data.append((edited_rank, requirement))
-
-    # st.header("Edited Requirements")
-    # for rank, requirement in edited_data:
-    #     st.write(f"{rank}. {requirement}")
-
-    # # req_df = st.experimental_data_editor(data["requirement_list"],num_rows="dynamic")
-
-    # # data2 = [
-    # # {"id": "oct", "order": 10, "name": "Oct"},
-    # # {"id": "nov", "order": 11, "name": "Nov"},
-    # # {"id": "dec", "order": 12, "name": "Dec"},
-    # # {"id": "jan", "order": 1, "name": "Jan"},
-    # # {"id": "feb", "order": 2, "name": "Feb"}]
-
-    # # slist = DraggableList(data2, key="foo")
-    # # st.write(slist)
     
-
     if input_type == "Text":
         # Text box for sharing product needs
         user_input_text = st.text_area("What do you want to buy today?:", "")
@@ -94,18 +45,13 @@ def main():
           st.warning("Oops! Please share your product needs, either through text or voice recording.")
         
         result = request_summary(user_input_text)
-        # result_name = result['product_name']
-        # result_requirements = result['requirement_list'][0]
-
+        
         try:
             # check if the key exists in session state
             _ = st.session_state.result
         except AttributeError:
             # otherwise set it to false
             st.session_state.result = False
-
-        # if 'result' not in st.session_state:
-        #     st.session_state.result = result        
 
         # Display the product name and requirements from ML model
         st.success("Product Information from ML Model:")
@@ -131,32 +77,7 @@ def main():
             st.session_state.result = True
             st.success("Changes saved!")
             
-
             st.table(name_df,req_df)
-
-        # req_df = st.experimental_data_editor(result['requirement_list'])
-        # for idx, req in enumerate(result['requirement_list']):
-        #     with st.beta_expander(f"Requirement {idx + 1}"):
-        #         edited_req = st.text_input("Edit requirement:", req)
-        #         delete_button = st.button("Delete")
-        #         if delete_button:
-        #             ml_output['requirement_list'].remove(req)
-
-        # Allow user to manipulate requirement list
-        # st.write("Product Requirements:")
-        # edited_requirements = []
-        # for idx, req in enumerate(result['requirement_list']):
-        #     edited_req = st.text_input(f"Requirement {idx + 1}:", req)
-        #     edited_requirements.append(edited_req)
-
-        # # Rearrange, add, or delete values in requirements list
-        # rearranged_requirements = st.text_area("Rearrange, add, or delete values:", "\n".join(edited_requirements))
-        
-        # result_name = result['product_name']
-        # result_requirements = result['requirement_list'][0]
-        # #product_name = lines[0]
-        # product_requirements = [line.strip() for line in lines[1:] if line.strip()]
-
 
 def request_summary(user_input):
     f = modal.Function.lookup("corise-prod_recommendation-project", "summary_breakdown")
