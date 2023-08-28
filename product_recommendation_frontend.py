@@ -36,7 +36,7 @@ def main():
         product_needs_voice = st.audio(audio_bytes, format="audio/wav")
         # if product_needs_voice!=None:
         #     st.write(type(products_needs_voice))
-        # user_input_text = model.transcribe(product_needs_voice)
+        user_input_text = model.transcribe(audio_bytes)
 
         # with sr.AudioFile(product_needs_voice) as source:
         #     # listen for the data (load audio to memory)
