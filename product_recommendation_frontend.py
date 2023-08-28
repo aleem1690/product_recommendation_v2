@@ -41,8 +41,8 @@ def main():
             st.audio(audio_bytes.tobytes())
             
             # To save audio to a file:
-            wav_file = tempfile.TemporaryFile()
-            # wav_file = open("audio_bytes.mp3", "wb")
+            # wav_file = tempfile.TemporaryFile()
+            wav_file = open("audio_bytes.mp3", "wb")
             wav_file.write(audio_bytes.tobytes())
 
             st.write(wav_file)
