@@ -36,7 +36,7 @@ def main():
         # typ = type(audio_bytes)
         # st.write(typ)
         product_needs_voice = st.audio(audio_bytes, format="audio/wav")
-        # audio_tbt = model.load_audio(product_needs_voice)
+        audio_tbt = whisper.load_audio(product_needs_voice)
         # if len(audio_tbt)>0:
         #     st.write("done")
         # if product_needs_voice!=None:
