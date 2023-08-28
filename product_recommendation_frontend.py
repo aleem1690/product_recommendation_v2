@@ -9,6 +9,7 @@ import whisper
 import pandas as pd
 # from st_draggable_list import DraggableList
 import speech_recognition as sr
+from audiorecorder import audiorecorder
 
 def main():
     # Enthusiastic welcome message
@@ -32,11 +33,20 @@ def main():
     else:
         # Voice recording option
         st.write("We would love to hear from you!")
-        audio_bytes = audio_recorder()
+        # audio_bytes = audio_recorder()
+        audio_bytes = audiorecorder("Click to record")
+        if len(audio) > 0:
+            # To play audio in frontend:
+            st.audio(audio.tobytes())
+            
+            # To save audio to a file:
+            wav_file = open("audio.mp3", "wb")
+            wav_file.write(audio.tobytes())
+        
         # typ = type(audio_bytes)
         # st.write(typ)
-        product_needs_voice = st.audio(audio_bytes, format="audio/wav")
-        st.write(product_needs_voice)
+        # product_needs_voice = st.audio(audio_bytes, format="audio/wav")
+        # st.write(product_needs_voice)
         # audio_tbt = whisper.load_audio(product_needs_voice)
         # if len(audio_tbt)>0:
         #     st.write("done")
