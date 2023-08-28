@@ -32,7 +32,7 @@ def main():
     else:
         # Voice recording option
         st.write("We would love to hear from you!")
-        audio_bytes = audio_recorder()
+        # audio_bytes = audio_recorder()
         # product_needs_voice = st.audio(audio_bytes, format="audio/wav")
         # audio_tbt = model.load_audio(product_needs_voice)
         # if len(audio_tbt)>0:
