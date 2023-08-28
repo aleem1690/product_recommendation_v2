@@ -6,3 +6,4 @@ bs4
 openai-whisper
 audio_recorder_streamlit
 streamlit-draggable-list
+SpeechRecognition
