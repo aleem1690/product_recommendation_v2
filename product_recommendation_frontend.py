@@ -35,13 +35,13 @@ def main():
         st.write("We would love to hear from you!")
         # audio_bytes = audio_recorder()
         audio_bytes = audiorecorder("Click to record")
-        if len(audio) > 0:
+        if len(audio_bytes) > 0:
             # To play audio in frontend:
-            st.audio(audio.tobytes())
+            st.audio(audio_bytes.tobytes())
             
             # To save audio to a file:
-            wav_file = open("audio.mp3", "wb")
-            wav_file.write(audio.tobytes())
+            wav_file = open("audio_bytes.mp3", "wb")
+            wav_file.write(audio_bytes.tobytes())
         
         # typ = type(audio_bytes)
         # st.write(typ)
