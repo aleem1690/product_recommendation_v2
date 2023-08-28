@@ -8,6 +8,7 @@ import os
 import whisper
 import pandas as pd
 # from st_draggable_list import DraggableList
+import speech_recognition as sr
 
 def main():
     # Enthusiastic welcome message
@@ -23,6 +24,7 @@ def main():
 
     #setting whisper model
     model = whisper.load_model("base")
+    r = sr.Recognizer()
     
     if input_type == "Text":
         # Text box for sharing product needs
@@ -32,7 +34,14 @@ def main():
         st.write("We would love to hear from you!")
         audio_bytes = audio_recorder()
         product_needs_voice = st.audio(audio_bytes, format="audio/wav")
-        user_input_text = model.transcribe(product_needs_voice)
+        # user_input_text = model.transcribe(product_needs_voice)
+
+        with sr.AudioFile(product_needs_voice) as source:
+            # listen for the data (load audio to memory)
+            audio_data = r.record(source)
+            # recognize (convert from speech to text)
+            text = r.recognize_google(audio_data)
+            print(text)
 
     if st.button("Submit"):
         if input_type == "Text" and user_input_text.strip() != "":
