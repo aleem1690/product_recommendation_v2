@@ -10,6 +10,7 @@ import pandas as pd
 # from st_draggable_list import DraggableList
 import speech_recognition as sr
 from audiorecorder import audiorecorder
+import tempfile
 
 def main():
     # Enthusiastic welcome message
@@ -40,12 +41,13 @@ def main():
             st.audio(audio_bytes.tobytes())
             
             # To save audio to a file:
-            wav_file = open("audio_bytes.mp3", "wb")
+            wav_file = tempfile.TemporaryFile()
+            # wav_file = open("audio_bytes.mp3", "wb")
             wav_file.write(audio_bytes.tobytes())
 
-            st.write(wav_file.name)
+            st.write(wav_file)
 
-            audio_tbt = whisper.load_audio(audio_bytes.tobytes())
+            audio_tbt = whisper.load_audio(wav_file)
         
         # typ = type(audio_bytes)
         # st.write(typ)
