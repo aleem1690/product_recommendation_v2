@@ -47,7 +47,7 @@ def main():
 
             st.write(wav_file.name)
 
-            audio_tbt = whisper.transcribe("35be1da269ee870eb1c2a9a759869f5155b3b63efa134bbb4e02c095.wav")
+            audio_tbt = whisper.load_audio("35be1da269ee870eb1c2a9a759869f5155b3b63efa134bbb4e02c095.wav")
         
         # typ = type(audio_bytes)
         # st.write(typ)
